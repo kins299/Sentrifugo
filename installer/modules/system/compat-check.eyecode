@@ -1,0 +1,32 @@
+<?php
+/*
+  ___  _ __   ___ _   _  ___
+ / _ \| '_ \ / _ \ | | |/ _ \
+| (_) | | | |  __/ |_| |  __/
+ \___/|_| |_|\___|\__, |\___|
+                  |___/
+
+oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
+ -> provided with this release in license.txt
+ -> or via web at www.gnu.org/licenses/agpl-3.0.txt
+
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+*/
+
+if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'back') {
+	system_compatcheck_back();
+} else {
+	system_compatcheck_start();
+}
+
+function system_compatcheck_start() {
+	return output_do(lib_compat() . '<div class="button"><form action="./index.php?action=back" method="post"><input class="iButton" type="submit" value="' . lang_translate('installer-system-back', 'Back') . '" /></form></div>', 'system', lang_translate('installer-system-compatcheck', 'Compatibility Check'));
+}
+
+function system_compatcheck_back() {
+	$_SECTION['password'] = '';
+	
+	return system_start();
+}
+?>
